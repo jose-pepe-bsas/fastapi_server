@@ -33,5 +33,19 @@ def test_user_must_use_arroba_in_email():
             "roles":1
         }, db=db)
 
+def test_user_must_not_exists_before_saving():
+    with pytest.raises(ValueError):
+        db = []
+        sut = SignUp().create_user(user={
+            "email":"jose.s.contacto@gmail.com",
+            "password":"chocolateLoco2",
+            "roles":1
+        }, db=db)
+        sut = SignUp().create_user(user={
+            "email":"jose.s.contacto@gmail.com",
+            "password":"chocolao2",
+            "roles":1
+        }, db=db)
+
 
 
