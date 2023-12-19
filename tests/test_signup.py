@@ -1,4 +1,5 @@
 from servicios.signup import SignUp
+from tests.helpers.user_factory import UserFactory
 import pytest
 """
 Modulo de creacion de cuenta de usuario
@@ -17,35 +18,19 @@ Modulo de creacion de cuenta de usuario
 
 def test_serv_should_create_a_user_with_roles_email_pass():
     db = []
-    sut = SignUp().create_user(user={
-        "email":"jose.s.contacto@gmail.com",
-        "password":"chocolateLoco2",
-        "roles":1
-    }, db=db)
+    sut = SignUp().create_user(user=UserFactory().create_user("jose.s.contacto@gmail.com"), db=db)
     assert db[0]["email"]=="jose.s.contacto@gmail.com"
     
 def test_user_must_use_arroba_in_email():
     with pytest.raises(ValueError):
         db = []
-        sut = SignUp().create_user(user={
-            "email":"jose.s.contactogmail.com",
-            "password":"chocolateLoco2",
-            "roles":1
-        }, db=db)
+        sut = SignUp().create_user(user=UserFactory().create_user(email="jose.s.contactogmail.com"), db=db)
 
 def test_user_must_not_exists_before_saving():
     with pytest.raises(ValueError):
         db = []
-        sut = SignUp().create_user(user={
-            "email":"jose.s.contacto@gmail.com",
-            "password":"chocolateLoco2",
-            "roles":1
-        }, db=db)
-        sut = SignUp().create_user(user={
-            "email":"jose.s.contacto@gmail.com",
-            "password":"chocolao2",
-            "roles":1
-        }, db=db)
+        sut = SignUp().create_user(user=UserFactory().create_user(email="jose.s.contactogmail.com"), db=db)
+        sut = SignUp().create_user(user=UserFactory().create_user(email="jose.s.contactogmail.com"), db=db)
 
 
 
