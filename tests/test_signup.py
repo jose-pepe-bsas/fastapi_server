@@ -1,3 +1,4 @@
+from servicios.signup import SignUp
 """
 Modulo de creacion de cuenta de usuario
 
@@ -10,9 +11,6 @@ Modulo de creacion de cuenta de usuario
 
 """
 
-class SignUp:
-    def create_user(self,user:dict=None,db:list=None):
-        db.append(user)
 
 def test_serv_should_create_a_user_with_roles_email_pass():
     db = []
