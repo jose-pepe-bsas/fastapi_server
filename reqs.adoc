@@ -1,0 +1,53 @@
+= Server en FASTAPI:
+
+== Tareas por funcionalidad
+
+1. Login:
+  . Implementar Endpoint que devuelva 
+    . Auth token
+    . Refresh token
+  . Generar excepcion cuando el endpoint esta expirado
+  . Generar el id del usuario usando datos de el (tipo de cliente, os, etc)
+  . Generar excepcion cuando el usuario no existe o no es valido su auth
+  . Implementar servicio de generacion de tokens
+    . Usar atributo de token_type
+    . Usar id dinamico de usuario en el payload
+  . Cargar los datos de JWT_SECRET_KEY y JWT_REFRESH_SECRET_KEY desde variables de entorno.
+
+2. Logout
+  . Implementar eliminacion de token de refresh para el usuario
+  . Expirar el time delta del token de auth
+
+3. SignIn
+  . Crear servicio para generar un usuario en base a roles y datos (correo, passwords, etc)
+  . Exponer un endpoint para generar usuario
+  . Crear servicio de persistencia
+  . Crear y lanzar excepciones en casos limites
+    El usuario no puede existir
+    El email debe ser valido teniendo un '@'
+
+4. SignOut
+Implementar el congelamiento de datos de usuario por x dias
+Implementar el no uso del sistema por parte del usuario
+Implementar que los datos publicos del usuario ya no sean visibles para otros
+
+5. Config 
+Crear un modulo de configuracion para el servidor que lea la config de forma dinamica
+  . Determinar que configuracion se cargara
+  . Importar libreria de toml
+  . Hacer que la configuracion carge los valores en un dict separado por contexto de uso
+  . Hacer que la configuracion sea inyectable en el main o o inicio del servidor
+
+== Tecnologias
+
+1. Validaciones de estructuras de datos con Pydantic
+2. Implementacion tanto paralela como oficial de auth (usando un adaptador para fastapi y uno por mi cuenta)
+3. Uso de poetry para manejar el paquete
+4. Uso de swagger para probar a mano
+5. Uso de pytest para probar automaticamente
+6. Persistencia usando OS lib de python
+7. usar uuid4 para generar id de usuario
+8. usar bcrypt para encriptar passwords
+9. usar strategy para implementar routers por tipo de usuario
+10. usar dot env para cargar var de entorno
+11. Usar jwt para manejo de web tokens 
