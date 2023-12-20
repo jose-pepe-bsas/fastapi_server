@@ -38,6 +38,14 @@ Crear un modulo de configuracion para el servidor que lea la config de forma din
   . Hacer que la configuracion carge los valores en un dict separado por contexto de uso
   . Hacer que la configuracion sea inyectable en el main o o inicio del servidor
 
+3.a Repositorio:
+  . Crear el protocolo (interf) de repo a usar en servicios
+  . Crear implementacion en memoria del protocolo
+  . INyectar implementacion en memoria desde container de fastapi
+
+6. Crear main para el servidor
+  . Inyectar configuracion y dependencias de infra para iniciar el servidor
+
 == Tecnologias
 
 1. Validaciones de estructuras de datos con Pydantic
