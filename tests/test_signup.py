@@ -19,7 +19,7 @@ Modulo de creacion de cuenta de usuario
 def test_serv_should_create_a_user_with_roles_email_pass():
     db = []
     sut = SignUp().create_user(user=UserFactory().create_user("jose.s.contacto@gmail.com"), db=db)
-    assert db[0]["email"]=="jose.s.contacto@gmail.com"
+    assert db[0].email=="jose.s.contacto@gmail.com"
     
 def test_user_must_use_arroba_in_email():
     with pytest.raises(ValueError):
