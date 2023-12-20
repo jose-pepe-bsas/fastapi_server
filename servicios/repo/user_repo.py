@@ -9,7 +9,7 @@ class Repo:
 
     def exists(self,user_email:str) -> bool:
         for user in self._db:
-            if user_email == user["email"]:
+            if user_email == user.email:
                 return True
         return False
 
