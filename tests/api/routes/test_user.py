@@ -14,19 +14,20 @@ def clean_db():
     yield
     db._db = []
 
-def test_routes_should_route_user_root():
-    client = TestClient(app)
+@pytest.fixture(name="client")
+def client():
+    return TestClient(app)
+
+def test_routes_should_route_user_root(client):
     assert client.get("/users/").status_code == 200
 
-def test_routes_should_route_to_login():
-    client = TestClient(app)
+def test_routes_should_route_to_login(client):
     assert client.post("/users/signup/",json={
         "email":"jose.s.contacto@gmail.com",
         "password":"jose321!"
     }).json()["sub"] == "user just register successfully"
 
-def test_login_route_should_only_acept_no_empty_email_and_pass():
-    client = TestClient(app)
+def test_login_route_should_only_acept_no_empty_email_and_pass(client):
     resp = client.post("/users/signup/",json={
         "email":" ",
         "password":"\n"
@@ -34,12 +35,8 @@ def test_login_route_should_only_acept_no_empty_email_and_pass():
     assert resp.json()["sub"] == "Bad user data entries"
     assert resp.status_code == 403
 
-
-
-#TODO: Para probar persistencia usando api, usar el metodo get user/user_id
         
-def test_login_should_persist_user_trhought_signup():
-    client = TestClient(app)
+def test_login_should_persist_user_trhought_signup(client):
     client.post("/users/signup/",json={
         "email":"jose.s.contacto@gmail.com",
         "password":"hello123"
