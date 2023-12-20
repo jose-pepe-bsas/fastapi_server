@@ -13,4 +13,5 @@ class Repo:
                 return True
         return False
 
-
+    def get_all(self) -> list:
+        return self._db
