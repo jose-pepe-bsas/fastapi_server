@@ -1,11 +1,18 @@
 from fastapi.testclient import TestClient
+import pytest
 from api.routes.users import user_route
 from fastapi import FastAPI
+from api.routes.users import db
 """user routes"""
 
 app = FastAPI()
 app.include_router(user_route)
 
+@pytest.fixture(autouse=True,name="clean_db")
+def clean_db():
+    db._db = []
+    yield
+    db._db = []
 
 def test_routes_should_route_user_root():
     client = TestClient(app)
@@ -29,4 +36,14 @@ def test_login_route_should_only_acept_no_empty_email_and_pass():
 
 
 
+#TODO: Para probar persistencia usando api, usar el metodo get user/user_id
         
+def test_login_should_persist_user_trhought_signup():
+    client = TestClient(app)
+    client.post("/users/signup/",json={
+        "email":"jose.s.contacto@gmail.com",
+        "password":"hello123"
+    })
+    resp = client.get("/users/").json()
+    assert resp[0]["email"] == "jose.s.contacto@gmail.com"
+    
