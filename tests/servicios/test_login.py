@@ -17,8 +17,18 @@ def test_should_raise_user_doesnt_exists_exception_if_user_isnt_registered():
         sut_response = Login().log_user_in("jose.s.contacto@gmail.com","Password123",db=StubRepoFactory().get_factory(exists=False))
 
 
+def test_should_keep_memory_id():
+    id = "cadenageneradaaut"
+    sut = Login()
+    sut.keep_id_in_memory(id)
+    assert sut.get_all_active_logged()[0]==id
 
 
+
+# validar user id 
+# encriptar y desencript pass -> bycrpt(user_pass)
+# desencript token -> jwt.decode(token,key)
+#
 
 
 #TODO: should_obtain_id_for_session_using_user_data():

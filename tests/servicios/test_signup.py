@@ -37,4 +37,7 @@ def test_user_must_not_exists_before_saving():
         sut = SignUp().create_user(user=UserFactory().create_user(email="jose.s.contactogmail.com"), db=db)
 
 
+def test_should_get_an_user_id():
+    sut_response = SignUp().get_user_id()
+    assert type(sut_response) is str and len(sut_response) > 0
 
