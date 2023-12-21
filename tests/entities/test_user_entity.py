@@ -4,7 +4,7 @@ def test_user_should_exists_by_email_pass_roles():
     email = "jose.s.contacto@gmail.com"
     password = "Email123"
     roles = 3 
-    sut = User(email=email,password=password,roles=roles) 
+    sut = User(email=email,password=password,roles=roles,id=None) 
     assert sut is not None
     assert sut.email == email
     assert sut.password== password

@@ -20,8 +20,9 @@ def test_should_raise_user_doesnt_exists_exception_if_user_isnt_registered():
 def test_should_keep_memory_id():
     id = "cadenageneradaaut"
     sut = Login()
-    sut.keep_id_in_memory(id)
+    sut_response = sut.log_user_in("jose.s.contacto@gmail.com","Password123",db=StubRepoFactory().get_factory(exists=True).with_id(id))
     assert sut.get_all_active_logged()[0]==id
+
 
 
 

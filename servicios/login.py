@@ -19,6 +19,9 @@ class Login:
             'access_token':acc_tok,
             'refresh_token':refr_tok
                           }
+
+        user_id = db._id
+        self._keep_id_in_memory(user_id)
         return credential
 
 
@@ -29,7 +32,7 @@ class Login:
         refresh_token = jwt.encode(to_encode_refresh, key=key, algorithm="HS256")
         return auth_token,refresh_token
 
-    def keep_id_in_memory(self,id:str=None):
+    def _keep_id_in_memory(self,id:str=None):
         if id is None:
             raise ValueError()
         self._active_logged.append(id)

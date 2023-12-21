@@ -1,5 +1,6 @@
 from servicios.signup import SignUp
 from tests.helpers.user_factory import UserFactory
+from uuid import UUID
 import pytest
 from api.routes.users import db
 """
@@ -38,6 +39,7 @@ def test_user_must_not_exists_before_saving():
 
 
 def test_should_get_an_user_id():
-    sut_response = SignUp().get_user_id()
-    assert type(sut_response) is str and len(sut_response) > 0
+    sut = SignUp().create_user(user=UserFactory().create_user("jose.s.contacto@gmail.com"), db=db)
+    id = db.get_all()[0].id
+    assert type(id) is UUID and len(str(id)) > 0
 

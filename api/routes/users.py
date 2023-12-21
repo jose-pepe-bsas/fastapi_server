@@ -5,10 +5,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from servicios.signup import SignUp
 from servicios.repo.user_repo import Repo
-
-class RegisterUser(BaseModel):
-    email:str
-    password:str
+from entities.trySignUpUser import RegisterUser
 
 user_route = APIRouter(prefix="/users")
 
