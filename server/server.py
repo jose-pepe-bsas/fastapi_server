@@ -1,8 +1,10 @@
 import uvicorn
+import logging
 import asyncio
 
 
-async def main(port:str="8080",app:str=f"server:app"):
+def main(port:str="8080",app:str=f"server:app"):
+    logging.basicConfig(format='%(process)d-%(levelname)s-%(message)s', level=logging.WARNING, filename="logs/log", filemode="w+")
     try:
         config = uvicorn.Config(app, port=port, log_level="info", reload=True)
         server = uvicorn.Server(config)
@@ -15,4 +17,4 @@ async def main(port:str="8080",app:str=f"server:app"):
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
