@@ -22,4 +22,9 @@ class Repo:
             db = self._db
         return db
 
+    def get_id_by_email(self,email:str=None) -> str:
+        if not email ==  None and self.exists(email):
+            for user in self._db:
+                if user.email == email:
+                    return user.id 
 

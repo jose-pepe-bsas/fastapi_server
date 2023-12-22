@@ -1,5 +1,6 @@
 from servicios.repo.user_repo import Repo
 from tests.helpers.user_factory import UserFactory
+import uuid
 """Modulo de repo de usuarios"""
 
 
@@ -19,6 +20,13 @@ def test_repo_should_return_all_users():
     assert resp[1].email == "julian@gmail.com"
 
 
+
+def test_repo_should_get_id_from_email():
+    sut = Repo(db=[])
+    id = uuid.uuid4()
+    sut.save(UserFactory().create_user(email="julian@gmail.com",id=id))
+    sut_response = sut.get_id_by_email("julian@gmail.com")
+    assert sut_response == id
 
 
 
