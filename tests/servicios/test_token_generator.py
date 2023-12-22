@@ -39,4 +39,9 @@ def test_token_exp_time_should_be_setted():
     token_exp= read_token(sut_response,KEY)["exp"] 
     assert type(token_exp) is int
 
-
+def test_serv_should_return_an_refresh_token():
+    refresh_token = get_access_token(minutes_time_delta=3,
+                                     payload="hola",
+                                     key="HS256",
+                                     type="REFRESH")
+    assert type(refresh_token) is str and len(refresh_token) >0
