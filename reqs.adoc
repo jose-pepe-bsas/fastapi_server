@@ -4,16 +4,16 @@
 
 1. Login:
   #1. Implementar registro de id en sesion actual
-  . Implementar Endpoint que devuelva 
+  . Implementar Endpoint que devuelva #DONE
     . Auth token
     . Refresh token
   . Generar excepcion cuando el endpoint esta expirado
-  . Generar el id del usuario usando datos de el (tipo de cliente, os, etc)
-  . Generar excepcion cuando el usuario no existe o no es valido su auth
-  . Implementar servicio de generacion de tokens
+  . #DONE Generar el id del usuario usando datos de el (tipo de cliente, os, etc)
+  . #DONE Generar excepcion cuando el usuario no existe o no es valido su auth
+  . #DONE Implementar servicio de generacion de tokens
     . Usar atributo de token_type
     . Usar id dinamico de usuario en el payload
-  . Cargar los datos de JWT_SECRET_KEY y JWT_REFRESH_SECRET_KEY desde variables de entorno.
+  . Cargar los datos de JWT_SECRET_KEY desde variables de entorno.
 
 2. Logout
   . Implementar eliminacion de token de refresh para el usuario
@@ -23,9 +23,11 @@
   . Crear servicio para generar un usuario en base a roles y datos (correo, passwords, etc)
   . Exponer un endpoint para generar usuario
   . Crear servicio de persistencia
+  . Almacenar passwords encriptadas
   . Crear y lanzar excepciones en casos limites
-    El usuario no puede existir
-    El email debe ser valido teniendo un '@'
+    #DONE El usuario no puede existir
+    #DONE El email debe ser valido teniendo un '@'
+
 
 4. SignOut
 Implementar el congelamiento de datos de usuario por x dias

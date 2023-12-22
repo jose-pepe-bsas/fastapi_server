@@ -26,14 +26,4 @@ def test_should_keep_memory_id():
 
 
 
-# validar user id 
-# encriptar y desencript pass -> bycrpt(user_pass)
-# desencript token -> jwt.decode(token,key)
-#
 
-
-#TODO: should_obtain_id_for_session_using_user_data():
-#    sut = Login().log_user_in("jose.s.contacto@gmail.com","Password123")
-#it gonna be gotten by hash user roles, email and password, using a secure hash key
-
-#TODO: User should be restringed by his permissions
