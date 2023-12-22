@@ -14,7 +14,7 @@ class Login:
         if not db.exists(user_email):
             raise UserIsNotRegistered()
 
-        acc_tok,refr_tok = self.get_auth_tokens()
+        acc_tok,refr_tok = self._get_auth_tokens()
 
         credential = {
             'access_token':acc_tok,
@@ -26,10 +26,9 @@ class Login:
         return credential
 
 
-    def get_auth_tokens(self,time_delta_auth:int=5,time_delta_refresh:int=10,payload_auth=None,payload_refresh=None,key="test123"):
+    def _get_auth_tokens(self,time_delta_auth:int=5,time_delta_refresh:int=10,payload_auth=None,payload_refresh=None,key="test123"):
         auth_token = get_access_token(minutes_time_delta = time_delta_auth,payload= payload_auth,key=key)
-        to_encode_refresh = {"exp": time_delta_refresh, "sub": payload_refresh}
-        refresh_token = jwt.encode(to_encode_refresh, key=key, algorithm="HS256")
+        refresh_token = get_access_token(minutes_time_delta = time_delta_auth,payload= payload_auth,key=key,type="REFRESH")
         return auth_token,refresh_token
 
     def _keep_id_in_memory(self,id:str=None):
