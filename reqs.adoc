@@ -3,6 +3,7 @@
 == Tareas por funcionalidad
 
 1. Login:
+  #1. Implementar registro de id en sesion actual
   . Implementar Endpoint que devuelva 
     . Auth token
     . Refresh token
@@ -46,8 +47,11 @@ Crear un modulo de configuracion para el servidor que lea la config de forma din
 6. Crear main para el servidor
   . Inyectar configuracion y dependencias de infra para iniciar el servidor
 
-== Tecnologias
+7. Cubrir testeo de servidor uvicorn:
+  . Aprender a hacerlo de forma asincrona
 
+== Tecnologias
+#1. Utilizar redis para esto
 1. Validaciones de estructuras de datos con Pydantic
 2. Implementacion tanto paralela como oficial de auth (usando un adaptador para fastapi y uno por mi cuenta)
 3. Uso de poetry para manejar el paquete
