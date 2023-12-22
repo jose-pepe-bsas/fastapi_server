@@ -1,7 +1,10 @@
 import uvicorn
 import logging
 import asyncio
-
+from api.routes.users import user_route
+from fastapi import FastAPI
+app =FastAPI()
+app.include_router(user_route)
 
 def main(port:str="8080",app:str=f"server:app"):
     logging.basicConfig(format='%(process)d-%(levelname)s-%(message)s', level=logging.WARNING, filename="logs/log", filemode="w+")
