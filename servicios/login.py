@@ -1,3 +1,4 @@
+from servicios.tokens.generate_tokens import get_access_token
 import uuid
 import jwt
 """Componente de autenticacion para sesiones del sistema"""
@@ -26,8 +27,7 @@ class Login:
 
 
     def get_auth_tokens(self,time_delta_auth:int=5,time_delta_refresh:int=10,payload_auth=None,payload_refresh=None,key="test123"):
-        to_encode_auth = {"exp": time_delta_auth, "sub": payload_auth}
-        auth_token = jwt.encode(to_encode_auth, key=key, algorithm="HS256")
+        auth_token = get_access_token(minutes_time_delta = time_delta_auth,payload= payload_auth,key=key)
         to_encode_refresh = {"exp": time_delta_refresh, "sub": payload_refresh}
         refresh_token = jwt.encode(to_encode_refresh, key=key, algorithm="HS256")
         return auth_token,refresh_token
