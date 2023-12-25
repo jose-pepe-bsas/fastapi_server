@@ -3,6 +3,7 @@
 from fastapi import FastAPI, Response, status
 from fastapi import APIRouter
 from pydantic import BaseModel
+from entities.authuser import AuthUser
 from servicios.signup import SignUp
 from servicios.login import Login
 from servicios.repo.user_repo import Repo
@@ -12,9 +13,6 @@ user_route = APIRouter(prefix="/users")
 
 db = Repo()
 
-class AuthUser(BaseModel):
-    email:str
-    password:str
 
 @user_route.get("/")
 async def root():
