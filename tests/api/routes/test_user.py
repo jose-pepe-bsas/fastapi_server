@@ -22,10 +22,19 @@ def test_routes_should_route_user_root(client):
     assert client.get("/users/").status_code == 200
 
 def test_routes_should_route_to_login(client):
-    assert client.post("/users/signup/",json={
+    client.post("/users/signup/",json={
         "email":"jose.s.contacto@gmail.com",
         "password":"jose321!"
-    }).json()["sub"] == "user just register successfully"
+                })
+
+    response = client.post("/users/login/",json={
+        "email":"jose.s.contacto@gmail.com",
+        "password":"jose321!"
+    })
+    assert response.json()["sub"] == "user just register successfully"
+    assert response.json()["tokens"]["auth_token"] is not None
+    assert response.json()["tokens"]["refresh_token"] is not None
+
 
 def test_login_route_should_only_acept_no_empty_email_and_pass(client):
     resp = client.post("/users/signup/",json={

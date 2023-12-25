@@ -21,7 +21,7 @@ class Login:
             'refresh_token':refr_tok
                           }
 
-        user_id = db._id
+        user_id =db.get_id_by_email(user_email) 
         self._keep_id_in_memory(user_id)
         return credential
 
