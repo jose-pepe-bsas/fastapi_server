@@ -40,6 +40,8 @@ Crear un modulo de configuracion para el servidor que lea la config de forma din
   . Importar libreria de toml
   . Hacer que la configuracion carge los valores en un dict separado por contexto de uso
   . Hacer que la configuracion sea inyectable en el main o o inicio del servidor
+Crear y configurar un middleware para el servidor que reestrinja accesos dispositivo por seguridad y ademas diferencie el tipo de dispositivo cliente que hace la peticion para restringir respuesta de los servicios
+
 
 3.a Repositorio:
   . Crear el protocolo (interf) de repo a usar en servicios
@@ -51,6 +53,8 @@ Crear un modulo de configuracion para el servidor que lea la config de forma din
 
 7. Cubrir testeo de servidor uvicorn:
   . Aprender a hacerlo de forma asincrona
+
+8. Utilizar test data generators para todos los casos necesarios
 
 == Tecnologias
 #1. Utilizar redis para esto
@@ -65,3 +69,4 @@ Crear un modulo de configuracion para el servidor que lea la config de forma din
 9. usar strategy para implementar routers por tipo de usuario
 10. usar dot env para cargar var de entorno
 11. Usar jwt para manejo de web tokens 
+12. La incorporacion de la libreria open ssl relacionado al manejo de tokens
