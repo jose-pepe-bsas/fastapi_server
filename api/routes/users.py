@@ -8,6 +8,7 @@ from servicios.signup import SignUp
 from servicios.login import Login
 from servicios.repo.user_repo import Repo
 from entities.trySignUpUser import RegisterUser
+from fastapi import Header
 
 user_route = APIRouter(prefix="/users")
 
@@ -27,18 +28,19 @@ async def signup(register_user:RegisterUser, response:Response):
     return {"sub":"user just register successfully"}
 
 
+
+
 @user_route.post("/login/")
-async def login(auth_user:AuthUser):
+async def login(auth_user:AuthUser, response:Response):
     if auth_user.email.rstrip(" \n") == "" or auth_user.password.rstrip(" \n") == "" :
         response.status_code = status.HTTP_403_FORBIDDEN
         return {"sub":"Bad user data entries"}
     auth_token,refresh_token = Login().log_user_in(user_email=auth_user.email,
                         user_password=auth_user.password,
                         db=db)
-    return {"sub": "user just register successfully",
-            "tokens":{
-                'auth_token':auth_token,
-                'refresh_token':refresh_token
-                }
-            }
+    response.headers['auth_token'] = auth_token
+    response.headers['refresh_token'] = refresh_token
+                
+
+    return {"sub": "user just register successfully"}
 
