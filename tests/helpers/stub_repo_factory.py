@@ -9,7 +9,13 @@ class StubRepo:
     def with_id(self,id:int):
         self._id = id 
         return self
+    
+    def get_id_by_email(self,email:str):
+        if self._id == None:
+            "email@gmail.com"
+        return self._id
 
 class StubRepoFactory:
     def get_factory(self,exists=False):
         return StubRepo(exists=exists)
+
