@@ -7,26 +7,28 @@
   . Implementar Endpoint que devuelva #DONE
     . Auth token
     . Refresh token
-  . Generar excepcion cuando el endpoint esta expirado
+  . Generar excepcion cuando el endpoint esta expirado (Hecho por jwt)
   . #DONE Generar el id del usuario usando datos de el (tipo de cliente, os, etc)
   . #DONE Generar excepcion cuando el usuario no existe o no es valido su auth
   . #DONE Implementar servicio de generacion de tokens
     . Usar atributo de token_type
     . Usar id dinamico de usuario en el payload
   . Cargar los datos de JWT_SECRET_KEY desde variables de entorno.
+  . Asegurar ciertos endpoints privados para el usuario
 
 2. Logout
   . Implementar eliminacion de token de refresh para el usuario
   . Expirar el time delta del token de auth
 
 3. SignIn
-  . Crear servicio para generar un usuario en base a roles y datos (correo, passwords, etc)
-  . Exponer un endpoint para generar usuario
-  . Crear servicio de persistencia
+  . (DONE) Crear servicio para generar un usuario en base a roles y datos (correo, passwords, etc)
+  . (DONE) Exponer un endpoint para generar usuario
+  . (DONE) Crear servicio de persistencia
   . Almacenar passwords encriptadas
-  . Crear y lanzar excepciones en casos limites
-    #DONE El usuario no puede existir
-    #DONE El email debe ser valido teniendo un '@'
+  . #PENDING Crear y lanzar excepciones en casos limites
+      #DONE El usuario no puede existir
+      #DONE El email debe ser valido teniendo un '@'
+    
 
 
 4. SignOut
@@ -55,6 +57,8 @@ Crear y configurar un middleware para el servidor que reestrinja accesos disposi
   . Aprender a hacerlo de forma asincrona
 
 8. Utilizar test data generators para todos los casos necesarios
+
+9. Generar protocolos para desacoplar los componentes y permitir uso de abstracciones
 
 == Tecnologias
 #1. Utilizar redis para esto
