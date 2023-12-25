@@ -10,7 +10,7 @@ class SignUp:
                 raise ValueError()
         id = self._get_user_id()
         user_to_register = User(email=user.email,password=user.password,roles=0,id=id)
-        db.save(user=user)
+        db.save(user=user_to_register)
 
 
     def _get_user_id(self) -> str:
