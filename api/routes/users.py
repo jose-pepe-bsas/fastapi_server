@@ -11,6 +11,10 @@ user_route = APIRouter(prefix="/users")
 
 db = Repo()
 
+class AuthUser(BaseModel):
+    email:str
+    password:str
+
 @user_route.get("/")
 async def root():
     return db.get_all()
