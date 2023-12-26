@@ -3,6 +3,10 @@ import pytest
 from tests.helpers.user_factory import UserFactory
 from tests.helpers.stub_repo_factory import StubRepoFactory
 from servicios.login import Login, UserIsNotRegistered
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 """Componente de autenticacion para sesiones del sistema"""
 
 
