@@ -3,10 +3,11 @@ from entities.user import User
 
 class StubRepo:
     def __init__(self,exists=False):
-        self._id:uuid4 = 0
+        self._id:uuid4 = uuid4()
         self._exists = exists
-        self.password = None
-        self.email = None
+        self.password = "Pass123"
+        self.email ="jose.s.contacto@gmail.com" 
+        self._user = User(email=self.email,roles=2,password=self.password, id=self._id)
 
     def exists(self,user_email:str) -> bool:
         return self._exists 
@@ -29,7 +30,7 @@ class StubRepo:
         return self
 
     def get_user_by_id(self,id):
-        return User(email=self._email,roles=2,password=self.password, id=self._id)
+        return self._user
 
 class StubRepoFactory:
     def get_factory(self,exists=False):
