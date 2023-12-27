@@ -1,5 +1,7 @@
 from servicios.signup import SignUp
 from tests.helpers.user_factory import UserFactory
+from tests.helpers.stub_repo_factory import StubRepo
+from tests.helpers.user_factories.sign_up_user_factory import SignUpUserFactory
 from uuid import UUID
 import pytest
 from api.routes.users import db
@@ -15,6 +17,8 @@ Modulo de creacion de cuenta de usuario
 
 """
 
+user = SignUpUserFactory.sign_up_user_factory
+
 
 @pytest.fixture(autouse=True,name="clean_db")
 def clean_db():
@@ -22,9 +26,11 @@ def clean_db():
     yield
     db._db = []
 
+#TODO: Cambiar el parametro user por el envio de los parametros de User, email y password
 def test_serv_should_create_a_user_with_roles_email_pass():
-    sut = SignUp().create_user(user=UserFactory().create_user("jose.s.contacto@gmail.com"), db=db)
-    assert db._db[0].email=="jose.s.contacto@gmail.com"
+    sut = SignUp()
+    sut = SignUp().create_user(user=user, db=db)
+    assert db._db[0].email==user.email
     
 def test_user_must_use_arroba_in_email():
     with pytest.raises(ValueError):
@@ -32,14 +38,14 @@ def test_user_must_use_arroba_in_email():
         sut = SignUp().create_user(user=UserFactory().create_user(email="jose.s.contactogmail.com"), db=db)
 
 def test_user_must_not_exists_before_saving():
+    db = StubRepo(exists=True)
     with pytest.raises(ValueError):
-        db = []
-        sut = SignUp().create_user(user=UserFactory().create_user(email="jose.s.contactogmail.com"), db=db)
-        sut = SignUp().create_user(user=UserFactory().create_user(email="jose.s.contactogmail.com"), db=db)
+        sut = SignUp().create_user(user=user,db=db)
 
 
 def test_should_get_an_user_id():
-    sut = SignUp().create_user(user=UserFactory().create_user("jose.s.contacto@gmail.com"), db=db)
+    sut = SignUp().create_user(user=user 
+                               ,db=db)
     id = db.get_all()[0].id
     assert type(id) is UUID and len(str(id)) > 0
 
