@@ -6,6 +6,8 @@ import os
 def clean_env():
     if os.path.isfile(".env"):
         os.remove(".env")
+        os.system("touch .env")
+    os.system("touch .env")
     yield
     if os.path.isfile(".env"):
         os.remove(".env")
