@@ -1,5 +1,5 @@
 from entities.trySignUpUser import RegisterUser
-from tests.helpers.sign_up_user_factory import SignUpUserFactory
+from tests.helpers.user_factories.sign_up_user_factory import SignUpUserFactory
 
 def test_factory_should_return_standard_signup_user():
     """ 

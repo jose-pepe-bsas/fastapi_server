@@ -1,5 +1,5 @@
 from entities.authuser import AuthUser
-from tests.helpers.auth_user_factory import AuthUserFactory
+from tests.helpers.user_factories.auth_user_factory import AuthUserFactory
 
 
 def test_factory_should_return_a_standard_auth_user():

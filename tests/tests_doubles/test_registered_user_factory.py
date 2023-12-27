@@ -1,6 +1,6 @@
 from entities.user import User 
 from uuid import uuid4, UUID
-from tests.helpers.registered_user_factory import RegisteredUserFactory
+from tests.helpers.user_factories.registered_user_factory import RegisteredUserFactory
 
 
 def test_factory_should_return_a_standard_registered_user():
