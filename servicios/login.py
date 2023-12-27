@@ -41,6 +41,14 @@ class Login:
     def get_all_active_logged(self):
         return self._active_logged
 
+    def validate_password(self,input=None,email=None,db=None):
+        if not db.exists(email):
+            raise UserIsNotRegistered()
+        user_id = db.get_id_by_email(email)
+        return db.get_user_by_id(user_id).password == input
+    
+
+
 
 
 class UserIsNotRegistered(BaseException):

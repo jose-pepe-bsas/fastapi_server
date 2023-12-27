@@ -1,4 +1,5 @@
 from servicios.repo.user_repo import Repo 
+from uuid import uuid4
 import pytest
 from tests.helpers.user_factory import UserFactory
 from tests.helpers.stub_repo_factory import StubRepoFactory
@@ -27,7 +28,15 @@ def test_should_keep_memory_id():
     sut_response = sut.log_user_in("jose.s.contacto@gmail.com","Password123",db=StubRepoFactory().get_factory(exists=True).with_id(id))
     assert sut.get_all_active_logged()[0]==id
 
+    
+def test_sut_should_validate_password_matching():
+    actual_pass = "Password123!"
+    wrong_pass = "AnotherPass321¡"
+    email = "jose.s.contacto@gmail.com"
+    user_id = uuid4()
+    db = StubRepoFactory().get_factory(
+        exists=True
+    ).with_id(user_id).with_pass(actual_pass).with_email(email)
 
-
-
-
+    sut_response = Login().validate_password(input=wrong_pass,email=email,db=db)
+    assert sut_response is False
