@@ -32,7 +32,4 @@ class StubRepo:
     def get_user_by_id(self,id):
         return self._user
 
-class StubRepoFactory:
-    def get_factory(self,exists=False):
-        return StubRepo(exists=exists)
 

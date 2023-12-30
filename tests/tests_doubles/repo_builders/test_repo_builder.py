@@ -1,6 +1,4 @@
-from servicios.repo.user_repo import Repo
 from uuid import uuid4
-from tests.helpers.stub_repo_factory import StubRepo
 from tests.helpers.repo_builders.repo_builder import UserRepoBuilder
 
 def test_repo_builder_should_generate_custom_repo():

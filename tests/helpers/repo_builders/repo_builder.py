@@ -1,4 +1,4 @@
-from tests.helpers.stub_repo_factory import StubRepo
+from tests.helpers.stub_user_repo import StubRepo
 class UserRepoBuilder:
 
     def __init__(self):

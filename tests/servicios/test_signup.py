@@ -1,7 +1,7 @@
 from servicios.signup import SignUp
-from tests.helpers.user_factory import UserFactory
-from tests.helpers.stub_repo_factory import StubRepo
+from tests.helpers.repo_builders.repo_builder import UserRepoBuilder
 from tests.helpers.user_factories.sign_up_user_factory import SignUpUserFactory
+from tests.helpers.user_builders.auth_user_builder import AuthUserBuilder
 from uuid import UUID
 import pytest
 from api.routes.users import db
@@ -33,14 +33,15 @@ def test_serv_should_create_a_user_with_roles_email_pass():
     assert db._db[0].email==user.email
     
 def test_user_must_use_arroba_in_email():
+    user =  AuthUserBuilder().with_email("jose.s.contactogmail.com").build()
     with pytest.raises(ValueError):
         db = []
-        sut = SignUp().create_user(user=UserFactory().create_user(email="jose.s.contactogmail.com"), db=db)
+        sut = SignUp().create_user(user=user, db=db)
 
 def test_user_must_not_exists_before_saving():
-    db = StubRepo(exists=True)
+    repo = UserRepoBuilder().build()
     with pytest.raises(ValueError):
-        sut = SignUp().create_user(user=user,db=db)
+        sut = SignUp().create_user(user=user,db=repo)
 
 
 def test_should_get_an_user_id():
