@@ -1,4 +1,4 @@
-from entities.trySignUpUser import RegisterUser
+from entities.trySignUpUser import SignUpUser
 
 class TrySignUpUserBuilder:
     def __init__(self):
@@ -13,7 +13,7 @@ class TrySignUpUserBuilder:
         self._password = password
         return self
 
-    def build(self) -> RegisterUser:
-        return RegisterUser(email=self._email,
+    def build(self) -> SignUpUser:
+        return SignUpUser(email=self._email,
                         password=self._password)
 

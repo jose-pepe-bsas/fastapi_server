@@ -7,7 +7,7 @@ from entities.authuser import AuthUser
 from servicios.signup import SignUp
 from servicios.login import Login
 from servicios.repo.user_repo import Repo
-from entities.trySignUpUser import RegisterUser
+from entities.trySignUpUser import SignUpUser 
 from fastapi import Header
 
 user_route = APIRouter(prefix="/users")
@@ -20,7 +20,7 @@ async def root():
     return db.get_all()
 
 @user_route.post("/signup/")
-async def signup(register_user:RegisterUser, response:Response):
+async def signup(register_user:SignUpUser, response:Response):
     if register_user.email.rstrip(" \n") == "" or register_user.password.rstrip(" \n") == "" :
         response.status_code = status.HTTP_403_FORBIDDEN
         return {"sub":"Bad user data entries"}

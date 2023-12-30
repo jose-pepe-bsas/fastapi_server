@@ -1,8 +1,8 @@
 from entities.user import User 
-from entities.trySignUpUser import RegisterUser
+from entities.trySignUpUser import SignUpUser 
 import uuid
 class SignUp:
-    def create_user(self,user:RegisterUser=None,db:list=None):
+    def create_user(self,user:SignUpUser=None,db:list=None):
         if not "@" in user.email:
             raise ValueError()
         if db.exists(user.email):
