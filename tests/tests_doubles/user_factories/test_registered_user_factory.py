@@ -1,5 +1,4 @@
 from entities.user import User 
-from uuid import uuid4, UUID
 from tests.helpers.user_factories.registered_user_factory import RegisteredUserFactory
 
 
@@ -11,12 +10,12 @@ def test_factory_should_return_a_standard_registered_user():
         email:str
         password:str
         roles:int 
-        id:None | uuid.UUID
+        id:None | str
     """
     sut = RegisteredUserFactory.registered_user
     assert type(sut.email) is str
     assert type(sut.password) is str
     assert type(sut.roles) is int
-    assert type(sut.id) == UUID
+    assert type(sut.id) == str
 
     

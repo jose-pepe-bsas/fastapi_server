@@ -3,7 +3,7 @@ from entities.user import User
 
 class StubRepo:
     def __init__(self,exists=False):
-        self._id:uuid4 = uuid4()
+        self._id:str= str(uuid4())
         self._exists = exists
         self.password = "Pass123"
         self.email ="jose.s.contacto@gmail.com" 

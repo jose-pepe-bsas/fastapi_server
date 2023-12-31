@@ -4,7 +4,7 @@ class UserRepoBuilder:
     def __init__(self):
         self._exists = True
         self._db = []
-        self._id_by_email = 40
+        self._id_by_email = "IdGenerated"
         self._user = {
             'email':"jose.s.contacto@gmail.com",
             'password':'Password123'

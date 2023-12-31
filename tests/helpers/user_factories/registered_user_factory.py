@@ -5,4 +5,4 @@ class RegisteredUserFactory:
     registered_user:User = User(email="jose.s.contacto@gmail.com",
                     password= "blablabla123",
                     roles=3,
-                    id=uuid4())
+                    id=str(uuid4()))

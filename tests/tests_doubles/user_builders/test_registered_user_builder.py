@@ -1,5 +1,4 @@
 from tests.helpers.user_builders.registered_user_builder import RegisteredUserBuilder
-from uuid import uuid4,UUID
 
 
 def test_builder_should_return_a_registered_user():
@@ -10,11 +9,11 @@ def test_builder_should_return_a_registered_user():
         email:str
         password:str
         roles:int 
-        id:None | uuid.UUID 
+        id:None | str
     """
     sut = RegisteredUserBuilder(email="jose.s.contacto@gmail.com").build()
     assert type(sut.email) is str 
     assert type(sut.password) is str and len(sut.password)>0
     assert type(sut.roles) is int
-    assert type(sut.id) is UUID
+    assert type(sut.id) is str
 

@@ -1,10 +1,9 @@
-from uuid import uuid4
 from tests.helpers.repo_builders.repo_builder import UserRepoBuilder
 
 def test_repo_builder_should_generate_custom_repo():
     db = []
     exists = False
-    id_by_email = uuid4()
+    id_by_email = "IdGenerated"
     passw = "Pass123"
     user = {"user_value":"value"}
     sut = UserRepoBuilder().with_this_db(

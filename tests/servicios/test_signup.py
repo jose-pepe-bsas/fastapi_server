@@ -48,5 +48,5 @@ def test_should_get_an_user_id():
     sut = SignUp().create_user(user=user 
                                ,db=db)
     id = db.get_all()[0].id
-    assert type(id) is UUID and len(str(id)) > 0
+    assert type(id) is str and len(str(id)) > 0
 
