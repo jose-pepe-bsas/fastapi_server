@@ -14,6 +14,12 @@ class Login:
         if not db.exists(user_email):
             raise UserIsNotRegistered()
 
+        credential = self.create_session(db=db,email=user_email)
+        return credential
+
+    
+    def create_session(self,db=None,email=None):
+
         acc_tok,refr_tok = self._get_auth_tokens()
 
         credential = {
@@ -21,9 +27,11 @@ class Login:
             'refresh_token':refr_tok
                           }
 
-        user_id =db.get_id_by_email(user_email) 
-        self._keep_id_in_memory(user_id)
+        id = db.get_id_by_email(email) 
+        self._keep_id_in_memory(id)
         return credential
+
+
 
 
     def _get_auth_tokens(self,time_delta_auth:int=5,time_delta_refresh:int=10,payload_auth=None,payload_refresh=None,key="test123"):
