@@ -1,4 +1,3 @@
-from entities.user import User 
 from tests.helpers.user_factories.registered_user_factory import RegisteredUserFactory
 
 

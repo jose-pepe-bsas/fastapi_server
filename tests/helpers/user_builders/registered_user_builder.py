@@ -1,5 +1,5 @@
 from uuid import uuid4,UUID
-from entities.user import User
+from entities.user import RegisteredUser 
 
 class RegisteredUserBuilder:
     def __init__(self,email:str="jose.s.contacto@gmail.com",
@@ -12,7 +12,7 @@ class RegisteredUserBuilder:
         self._id = id
 
     def build(self):
-        return User(email=self._email,
+        return RegisteredUser(email=self._email,
                     password=self._password,
                     roles=self._roles,
                     id=self._id)

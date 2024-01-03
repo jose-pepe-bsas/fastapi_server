@@ -1,5 +1,5 @@
 from uuid import uuid4
-from entities.user import User
+from entities.user import RegisteredUser
 
 class StubRepo:
     def __init__(self,exists=False):
@@ -7,7 +7,7 @@ class StubRepo:
         self._exists = exists
         self.password = "Pass123"
         self.email ="jose.s.contacto@gmail.com" 
-        self._user = User(email=self.email,roles=2,password=self.password, id=self._id)
+        self._user = RegisteredUser(email=self.email,roles=2,password=self.password, id=self._id)
 
     def exists(self,user_email:str) -> bool:
         return self._exists 
