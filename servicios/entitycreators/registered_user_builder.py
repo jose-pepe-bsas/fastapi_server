@@ -1,3 +1,4 @@
+
 from uuid import uuid4,UUID
 from entities.user import RegisteredUser 
 
@@ -7,6 +8,12 @@ class RegisteredUserBuilder:
         self._password ="Password123"
         self._roles = 3
         self._id = str(uuid4()) 
+
+    def is_valid(self):
+        if not "@" in self._email: 
+            return False
+        return True
+
 
     def with_email(self,email:str=None):
         self._email = email

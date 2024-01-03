@@ -14,8 +14,8 @@ def test_serv_should_know_if_a_user_exists_or_not():
 
 def test_repo_should_return_all_users():
     sut = Repo(db=[])
-    user1= RegisteredUserBuilder(email="julian@gmail.com").build()
-    user2= RegisteredUserBuilder(email="jose.s.contacto@gmail.com").build()
+    user1= RegisteredUserBuilder().with_email(email="julian@gmail.com").build()
+    user2= RegisteredUserBuilder().with_email(email="jose.s.contacto@gmail.com").build()
     sut.save(user1)
     sut.save(user2)
     resp = sut.get_all()

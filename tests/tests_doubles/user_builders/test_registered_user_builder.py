@@ -11,7 +11,7 @@ def test_builder_should_return_a_registered_user():
         roles:int 
         id:None | str
     """
-    sut = RegisteredUserBuilder(email="jose.s.contacto@gmail.com").build()
+    sut = RegisteredUserBuilder().with_email("jose.s.contacto@gmail.com").build()
     assert type(sut.email) is str 
     assert type(sut.password) is str and len(sut.password)>0
     assert type(sut.roles) is int

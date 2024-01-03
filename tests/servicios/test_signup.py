@@ -1,4 +1,4 @@
-from servicios.signup import SignUp
+from servicios.signup import SignUp,NotValidSignUpException,AlreadySignedUser
 from tests.helpers.repo_builders.repo_builder import UserRepoBuilder
 from tests.helpers.user_factories.sign_up_user_factory import SignUpUserFactory
 from tests.helpers.user_builders.auth_user_builder import AuthUserBuilder
@@ -34,13 +34,13 @@ def test_serv_should_create_a_user_with_roles_email_pass():
     
 def test_user_must_use_arroba_in_email():
     user =  AuthUserBuilder().with_email("jose.s.contactogmail.com").build()
-    with pytest.raises(ValueError):
-        db = []
+    with pytest.raises(NotValidSignUpException):
+        db = UserRepoBuilder().with_exists(False).build()
         sut = SignUp().create_user(user=user, db=db)
 
 def test_user_must_not_exists_before_saving():
     repo = UserRepoBuilder().build()
-    with pytest.raises(ValueError):
+    with pytest.raises(AlreadySignedUser):
         sut = SignUp().create_user(user=user,db=repo)
 
 
