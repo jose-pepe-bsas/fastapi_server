@@ -1,8 +1,8 @@
-
 from uuid import uuid4,UUID
+from servicios.protocols.builders import BUILDER
 from entities.user import RegisteredUser 
 
-class RegisteredUserBuilder:
+class RegisteredUserBuilder(BUILDER):
     def __init__(self):
         self._email = "jose.s.contacto@gmail.com"
         self._password ="Password123"
@@ -31,6 +31,7 @@ class RegisteredUserBuilder:
         self._id = id
         return self
     
+    #OVERRIDE method
     def build(self):
         return RegisteredUser(email=self._email,
                     password=self._password,
