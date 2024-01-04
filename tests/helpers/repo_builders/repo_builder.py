@@ -1,4 +1,5 @@
 from tests.helpers.stub_user_repo import StubRepo
+from servicios.protocols.entityrepo import ENTITY_REPO
 class UserRepoBuilder:
 
     def __init__(self):
@@ -26,7 +27,7 @@ class UserRepoBuilder:
         self._user = user
         return self
 
-    def build(self):
+    def build(self) -> ENTITY_REPO:
         repo = StubRepo(exists=self._exists)
         repo._db = self._db
         repo._exists = self._exists
