@@ -3,27 +3,14 @@
 == Tareas por funcionalidad
 
 1. Login:
-  #1. Implementar registro de id en sesion actual
-  . Implementar Endpoint que devuelva #DONE
-    . Auth token
-    . Refresh token
-  . Generar excepcion cuando el endpoint esta expirado (Hecho por jwt)
-  . #DONE Generar el id del usuario usando datos de el (tipo de cliente, os, etc)
-  . #DONE Generar excepcion cuando el usuario no existe o no es valido su auth
-  . #DONE Implementar servicio de generacion de tokens
-    . Usar atributo de token_type
-    . Usar id dinamico de usuario en el payload
-  . Cargar los datos de JWT_SECRET_KEY desde variables de entorno.
   . Asegurar ciertos endpoints privados para el usuario
+  . Tratar caso "USUARIO YA ESTA LOGEADO"
 
 2. Logout
   . Implementar eliminacion de token de refresh para el usuario
   . Expirar el time delta del token de auth
 
 3. SignIn
-  . (DONE) Crear servicio para generar un usuario en base a roles y datos (correo, passwords, etc)
-  . (DONE) Exponer un endpoint para generar usuario
-  . (DONE) Crear servicio de persistencia
   . Almacenar passwords encriptadas
   . #PENDING Crear y lanzar excepciones en casos limites
       #DONE El usuario no puede existir
@@ -46,9 +33,7 @@ Crear y configurar un middleware para el servidor que reestrinja accesos disposi
 
 
 3.a Repositorio:
-  . Crear el protocolo (interf) de repo a usar en servicios
-  . Crear implementacion en memoria del protocolo
-  . INyectar implementacion en memoria desde container de fastapi
+  . INyectar una implementacion de prod desde container de fastapi
 
 6. Crear main para el servidor
   . Inyectar configuracion y dependencias de infra para iniciar el servidor
@@ -56,9 +41,6 @@ Crear y configurar un middleware para el servidor que reestrinja accesos disposi
 7. Cubrir testeo de servidor uvicorn:
   . Aprender a hacerlo de forma asincrona
 
-8. Utilizar test data generators para todos los casos necesarios
-
-9. Generar protocolos para desacoplar los componentes y permitir uso de abstracciones
 
 == Tecnologias
 #1. Utilizar redis para esto
@@ -74,3 +56,39 @@ Crear y configurar un middleware para el servidor que reestrinja accesos disposi
 10. usar dot env para cargar var de entorno
 11. Usar jwt para manejo de web tokens 
 12. La incorporacion de la libreria open ssl relacionado al manejo de tokens
+
+
+== Hecho
+
+
+=== Login:
+
+
+  #1. Implementar registro de id en sesion actual
+  . Implementar Endpoint que devuelva #DONE
+    . Auth token
+    . Refresh token
+  . Generar excepcion cuando el endpoint esta expirado (Hecho por jwt)
+  . #DONE Generar el id del usuario usando datos de el (tipo de cliente, os, etc)
+  . #DONE Generar excepcion cuando el usuario no existe o no es valido su auth
+  . #DONE Implementar servicio de generacion de tokens
+    . Usar atributo de token_type
+    . Usar id dinamico de usuario en el payload
+  . Cargar los datos de JWT_SECRET_KEY desde variables de entorno.
+
+=== SignIn:
+
+
+  . (DONE) Crear servicio para generar un usuario en base a roles y datos (correo, passwords, etc)
+  . (DONE) Exponer un endpoint para generar usuario
+  . (DONE) Crear servicio de persistencia
+
+=== Repo:
+
+
+  . Crear el protocolo (interf) de repo a usar en servicios
+  . Crear implementacion en memoria del protocolo
+
+8. Utilizar test data generators para todos los casos necesarios
+
+9. Generar protocolos para desacoplar los componentes y permitir uso de abstracciones
