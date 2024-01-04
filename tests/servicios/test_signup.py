@@ -1,4 +1,4 @@
-from servicios.signup import SignUp,NotValidSignUpException,AlreadySignedUser
+from servicios.account.signup import SignUp,NotValidSignUpException,AlreadySignedUser
 from tests.helpers.repo_builders.repo_builder import UserRepoBuilder
 from tests.helpers.user_factories.sign_up_user_factory import SignUpUserFactory
 from tests.helpers.user_builders.auth_user_builder import AuthUserBuilder

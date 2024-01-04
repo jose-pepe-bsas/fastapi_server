@@ -4,8 +4,8 @@ from fastapi import FastAPI, Response, status
 from fastapi import APIRouter
 from pydantic import BaseModel
 from entities.authuser import AuthUser
-from servicios.signup import SignUp
-from servicios.login import Login
+from servicios.account.signup import SignUp
+from servicios.account.login import Login
 from servicios.repo.user_repo import Repo
 from entities.trySignUpUser import SignUpUser 
 from fastapi import Header

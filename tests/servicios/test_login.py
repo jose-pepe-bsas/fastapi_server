@@ -2,7 +2,7 @@ from servicios.repo.user_repo import Repo
 from uuid import uuid4
 import pytest
 from tests.helpers.user_factories.auth_user_factory import AuthUserFactory
-from servicios.login import Login, UserIsNotRegistered
+from servicios.account.login import Login, UserIsNotRegistered
 from tests.helpers.user_factories.registered_user_factory import RegisteredUserFactory
 from tests.helpers.repo_builders.repo_builder import UserRepoBuilder
 from dotenv import load_dotenv
