@@ -1,4 +1,4 @@
-from servicios.repo.user_repo import Repo
+from repo.user_repo import Repo
 from tests.helpers.user_factories.registered_user_factory import RegisteredUserFactory
 from tests.helpers.user_builders.registered_user_builder import RegisteredUserBuilder
 """Modulo de repo de usuarios"""

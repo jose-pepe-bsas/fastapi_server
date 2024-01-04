@@ -1,4 +1,4 @@
-from servicios.repo.user_repo import Repo 
+from repo.user_repo import Repo 
 from uuid import uuid4
 import pytest
 from tests.helpers.user_factories.auth_user_factory import AuthUserFactory

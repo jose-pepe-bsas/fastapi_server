@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from entities.authuser import AuthUser
 from servicios.account.signup import SignUp
 from servicios.account.login import Login
-from servicios.repo.user_repo import Repo
+from repo.user_repo import Repo
 from entities.trySignUpUser import SignUpUser 
 from fastapi import Header
 
