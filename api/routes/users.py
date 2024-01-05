@@ -9,10 +9,12 @@ from servicios.account.login import Login
 from repo.user_repo import Repo
 from entities.trySignUpUser import SignUpUser 
 from fastapi import Header
+from servicios.account.login import CurrentActiveUsers
 
 user_route = APIRouter(prefix="/users")
 
 db = Repo()
+active_list = CurrentActiveUsers()
 
 
 @user_route.get("/")
@@ -37,10 +39,12 @@ async def login(auth_user:AuthUser, response:Response):
         return {"sub":"Bad user data entries"}
     auth_token,refresh_token = Login().log_user_in(user_email=auth_user.email,
                         user_password=auth_user.password,
-                        db=db)
+                        db=db,active_list=active_list)
     response.headers['auth_token'] = auth_token
     response.headers['refresh_token'] = refresh_token
                 
 
     return {"sub": "user just register successfully"}
+
+
 
