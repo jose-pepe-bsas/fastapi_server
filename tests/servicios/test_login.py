@@ -1,4 +1,5 @@
 from repo.user_repo import Repo 
+from servicios.account.login import CurrentActiveUsers
 from uuid import uuid4
 import pytest
 from tests.helpers.user_factories.auth_user_factory import AuthUserFactory
@@ -31,16 +32,17 @@ def test_should_raise_user_doesnt_exists_exception_if_user_isnt_registered():
                                            user.password,
                                            repo)
 
-
-def test_should_keep_memory_id():
+    
+def test_should_keep_memory_id_in_external_component():
     id = "Random ID"
     repo = UserRepoBuilder().with_id_by_email(id).build()
     sut = Login()
+    currentActiveUsers = CurrentActiveUsers()
     sut_response = sut.log_user_in(user.email,
                                    user.password,
-                                   db=repo)
+                                   db=repo,active_list = currentActiveUsers)
 
-    assert sut.get_all_active_logged()[0]==id
+    assert currentActiveUsers.users[0] == id
 
     
 def test_sut_should_validate_password_matching():

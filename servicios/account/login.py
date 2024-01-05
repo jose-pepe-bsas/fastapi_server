@@ -7,7 +7,8 @@ class Login:
     def __init__(self):
         self._active_logged = list()
 
-    def log_user_in(self,user_email:str=None,user_password:str=None,db=None) -> dict:
+    def log_user_in(self,user_email:str=None,user_password:str=None,db=None,active_list=None) -> dict:
+
         if None in [user_email,user_password]:
             raise ValueError("Email and/or pass was none")
 
@@ -17,11 +18,11 @@ class Login:
         if not db.exists(user_email):
             raise UserIsNotRegistered()
 
-        credential = self.create_session(db=db,email=user_email)
+        credential = self.create_session(db=db,email=user_email,current_list=active_list)
         return credential
 
     
-    def create_session(self,db=None,email=None):
+    def create_session(self,db=None,email=None,current_list=None):
 
         acc_tok,refr_tok = self._get_auth_tokens()
 
@@ -31,7 +32,8 @@ class Login:
                           }
 
         id = db.get_id_by_email(email) 
-        self._keep_id_in_memory(id)
+        
+        self._keep_id_in_memory(id,current_list=current_list)
         return credential
 
 
@@ -43,10 +45,11 @@ class Login:
         refresh_token = get_access_token(minutes_time_delta = time_delta_auth,payload= payload_auth,type="REFRESH")
         return auth_token,refresh_token
 
-    def _keep_id_in_memory(self,id:str=None):
+    def _keep_id_in_memory(self,id:str=None,current_list=None):
         if id is None:
             raise ValueError()
-        self._active_logged.append(id)
+        if current_list is not None:
+            current_list.users.append(id)
 
     def get_all_active_logged(self):
         return self._active_logged
@@ -63,3 +66,7 @@ class Login:
 
 class UserIsNotRegistered(BaseException):
     pass
+
+class CurrentActiveUsers:
+    def __init__(self):
+        self.users = list()
