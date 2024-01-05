@@ -1,11 +1,9 @@
 from servicios.tokens.generate_tokens import get_access_token
 from dotenv import load_dotenv
 from os import environ
+from servicios.tokens.read_token import TokenReader
 import jwt
 
-class TokenReader:
-    def read(self,token:dict=None,alg:str="HS256",key:str=None):
-        return jwt.decode(jwt= token,key=key,algorithms=alg)
 
         
 
