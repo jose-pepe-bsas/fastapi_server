@@ -10,6 +10,9 @@ class Login:
     def log_user_in(self,user_email:str=None,user_password:str=None,db=None) -> dict:
         if None in [user_email,user_password]:
             raise ValueError("Email and/or pass was none")
+
+        if not self.validate_password(input=user_password,email=user_email,db=db):
+            raise ValueError("Email and/or pass was none")
         
         if not db.exists(user_email):
             raise UserIsNotRegistered()

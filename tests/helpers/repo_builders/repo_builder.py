@@ -1,15 +1,17 @@
 from tests.helpers.stub_user_repo import StubRepo
 from servicios.protocols.entityrepo import ENTITY_REPO
+from entities.user import RegisteredUser
 class UserRepoBuilder:
 
     def __init__(self):
         self._exists = True
         self._db = []
         self._id_by_email = "IdGenerated"
-        self._user = {
-            'email':"jose.s.contacto@gmail.com",
-            'password':'Password123'
-        } 
+        self._user = RegisteredUser(email="jose.s.contacto@gmail.com",
+                                    password = "Password123",
+                                    id = "GeneratedId",
+                                    roles = 1
+                                    )
 
     def with_this_db(self,db):
         self._db = db

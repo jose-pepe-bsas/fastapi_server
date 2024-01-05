@@ -32,3 +32,8 @@ class Repo(ENTITY_REPO):
                 if user.email == email:
                     return user.id 
 
+
+    def get_user_by_id(self,id:int):
+        for user in self._db:
+            if user.id == id:
+                return user
