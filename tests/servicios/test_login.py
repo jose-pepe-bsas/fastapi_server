@@ -21,6 +21,7 @@ def test_should_obtain_access_and_refresh_token_by_registered_user():
                                        user.password,
                                        db=repo)
 
+    print(sut_response["access_token"])
     assert type(sut_response["access_token"]) is str and len(sut_response["access_token"])>0
     assert type(sut_response["refresh_token"]) is str and len(sut_response["refresh_token"])>0
 

@@ -18,20 +18,22 @@ class Login:
         if not db.exists(user_email):
             raise UserIsNotRegistered()
 
-        credential = self.create_session(db=db,email=user_email,current_list=active_list)
+        credential = self.create_session(db=db,
+                                         email=user_email,current_list=active_list)
         return credential
 
     
     def create_session(self,db=None,email=None,current_list=None):
 
-        acc_tok,refr_tok = self._get_auth_tokens()
+        id = db.get_id_by_email(email) 
+
+        acc_tok,refr_tok = self._get_auth_tokens(payload_auth={'id':id})
 
         credential = {
             'access_token':acc_tok,
             'refresh_token':refr_tok
                           }
 
-        id = db.get_id_by_email(email) 
         
         self._keep_id_in_memory(id,current_list=current_list)
         return credential
@@ -50,6 +52,10 @@ class Login:
             raise ValueError()
         if current_list is not None:
             current_list.users.append(id)
+            print(f"user {id} was added as logged")
+            idx = current_list.users.index(id)
+            print("id is "+current_list.users[idx])
+    
 
     def get_all_active_logged(self):
         return self._active_logged
@@ -70,3 +76,9 @@ class UserIsNotRegistered(BaseException):
 class CurrentActiveUsers:
     def __init__(self):
         self.users = list()
+
+    def is_user(self,user_id=None):
+        for user in self.users:
+            if user == user_id:
+                return True
+        return False

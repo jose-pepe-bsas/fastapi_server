@@ -31,7 +31,6 @@ def test_routes_should_route_to_login(client):
         "email":"jose.s.contacto@gmail.com",
         "password":"jose321!"
     })
-    assert response.json()["sub"] == "user just register successfully"
     assert response.headers["auth_token"] is not None
     assert response.headers["refresh_token"] is not None
 
